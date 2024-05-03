@@ -1,19 +1,13 @@
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+const express = require("express"); 
+const app = express();
+const port= process.env.PORT || 3000;
+//envio del correo
+const enviarcorreo = (process.env.GMAIL_EMAIL_RECEIVER, "Prueba de correo", "<h1>Prueba de correo</h1>")
 
-//configuracion de correo usando gmail
-let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.USER_EMAIL,
-        pass: process.env.USER_PASSWORD
-    }
+app.get("/", (req, res) => {
+    res.send("Hola");
+});
+app.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto http://localhost:${port}`);
 });
 
-let mailOptions = {
-    from: process.env.USER_EMAIL, //Quien lo envia
-    to: process.env.USER_EMAIL, // Quien lo recibe
-    subject: 'Prueba de correo', //  Asunto
-    html: '<h1>Prueba de correo</h1>' // Cuerpo del correo
-   // text: 'Prueba de correo' // Cuerpo del correo
-};
