@@ -25,4 +25,4 @@ const enviarCorreo=(to, subject, html)=>{
     }
   });
 }
-module.exports = {enviarCorreo}
+module.exports = enviarCorreo
